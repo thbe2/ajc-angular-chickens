@@ -1,0 +1,18 @@
+<div *ngIf="chicken">
+    <h2>{{chicken.name | uppercase}} Details</h2>
+    <div> <span>Id : </span> {{chicken.id}}</div>
+    <div>
+        <label for="name"> Chicken's Name : </label>
+    </div>
+    <input type="text" [(ngModel)]="chicken.name" name="name" id="name" />
+    <div> <span>Picture : </span>
+        <br>
+        <img src="{{ chicken.picture }}" alt="A chicken named {{ chicken.name }}" height="256" width="236"
+            onclick="document.getElementById('chickensound').play();" />
+    </div>
+
+
+    <audio id="chickensound" src="https://www.google.com/logos/fnbx/animal_sounds/chicken.mp3"></audio>
+</div>
+
+<button type="button" (click)="goBack()"> Back</button>

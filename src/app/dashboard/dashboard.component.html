@@ -1,0 +1,6 @@
+<h2>Top 3 Chickens</h2>
+<div class="chickens-menu">
+  <a *ngFor="let chicken of chickens" routerLink="/detail/{{chicken.id}}">
+    {{chicken.name}}
+  </a>
+</div>  
