@@ -21,6 +21,12 @@ export class ChickenDetailComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.chickenService.getChicken(id).subscribe((chicken) => this.chicken = chicken);
   }
+  save(): void {
+    if (this.chicken) {
+      this.chickenService.updateChicken(this.chicken)
+        .subscribe(() => this.goBack());
+    }
+  }
 
   ngOnInit() {
     this.getChicken();

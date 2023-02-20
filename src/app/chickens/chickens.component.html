@@ -1,10 +1,22 @@
 <h2>My Chickens</h2>
+
+<div>
+    <label for="new-chicken">Chicken name: </label>
+    <input id="new-chicken" #chickenName />
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(chickenName.value); chickenName.value=''">
+        Add chicken
+    </button>
+</div>
+
 <ul class="chickens">
     <li *ngFor="let chicken of chickens">
         <a routerLink="/detail/{{chicken.id}}">
-        <span class="badge">{{chicken.id}}</span>
-        <img class="picture" src="{{chicken.picture}}" height="40px" width="30px" />
-        {{chicken.name}}
-    </a>
+            <span class="badge">{{chicken.id}}</span>
+            <img class="picture" src="{{chicken.picture}}" height="40px" width="30px" />
+            {{chicken.name}}
+        </a>
+        <button type="button" class="delete" title="delete chicken" (click)="delete(chicken)">x</button>
     </li>
 </ul>
