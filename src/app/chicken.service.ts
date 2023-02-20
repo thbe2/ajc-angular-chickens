@@ -3,19 +3,26 @@ import { Chicken } from './chickens';
 import { CHICKENS } from './mock-chickens';
 import { Observable, of } from 'rxjs';
 import { MessagesService } from './messages.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ChickenService {
+  private chickenURL= 'http://localhost:8080/api';
 
-  constructor(private messageService: MessagesService) { }
+  constructor(
+    private messageService: MessagesService,
+    private http: HttpClient) { }
+
+  /** Log a ChickenService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`ChickenService: ${message}`);
+  }
 
   getChickens(): Observable<Chicken[]> {
-    const chickens = CHICKENS;
-    this.messageService.add('MessageService: fetched chickens');
-    return of(chickens);
+    return this.http.get<Chicken[]>(this.chickenURL+'/all');
   }
 
   getChicken(id: number): Observable<Chicken> {
