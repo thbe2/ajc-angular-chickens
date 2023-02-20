@@ -1,5 +1,7 @@
 package fr.ajc.chickens.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import fr.ajc.chickens.models.Chicken;
@@ -16,6 +18,10 @@ public class ChickenService implements ChickenServiceInterface {
 
 	public Chicken addChicken(Chicken chicken) {
 		return chickenRepository.save(chicken);
+	}
+
+	public List<Chicken> all() {
+		return chickenRepository.findAll();
 	}
 	
 	
